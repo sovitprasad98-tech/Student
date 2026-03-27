@@ -20,6 +20,7 @@
 body{font-family:var(--font);background:var(--off);color:var(--text);}
 ::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-thumb{background:var(--blue-mid);border-radius:4px;}
 
+/* LOADER */
 #loader{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:opacity .5s,visibility .5s;}
 #loader.hide{opacity:0;visibility:hidden;pointer-events:none;}
 .loader-img{width:80px;height:80px;object-fit:contain;animation:pulse 1.5s ease infinite;border-radius:14px;}
@@ -56,6 +57,8 @@ body{font-family:var(--font);background:var(--off);color:var(--text);}
 /* APP */
 #app{display:none;min-height:100vh;}
 #app.show{display:flex;}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:150;backdrop-filter:blur(2px);}
+.overlay.show{display:block;}
 
 /* SIDEBAR */
 .sidebar{width:var(--sidebar);background:var(--text);height:100vh;position:fixed;left:0;top:0;z-index:200;display:flex;flex-direction:column;overflow:hidden;transition:transform .35s cubic-bezier(.4,0,.2,1);}
@@ -78,14 +81,8 @@ body{font-family:var(--font);background:var(--off);color:var(--text);}
 .sb-logout{width:100%;padding:10px;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);border-radius:11px;font-family:var(--font);font-size:13px;color:#fc8181;cursor:pointer;font-weight:600;transition:.2s;display:flex;align-items:center;justify-content:center;gap:8px;}
 .sb-logout:hover{background:rgba(239,68,68,.25);}
 
-/* OVERLAY */
-.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:150;backdrop-filter:blur(2px);}
-.overlay.show{display:block;}
-
 /* MAIN */
 .main{margin-left:var(--sidebar);flex:1;padding:24px 26px;min-height:100vh;max-width:calc(100vw - var(--sidebar));}
-
-/* TOPBAR */
 .topbar{display:flex;align-items:center;gap:12px;margin-bottom:22px;}
 .topbar-left{flex:1;}
 .topbar-left h2{font-family:'Playfair Display',serif;font-size:23px;color:var(--text);}
@@ -94,7 +91,6 @@ body{font-family:var(--font);background:var(--off);color:var(--text);}
 .topbar-btn:hover{background:var(--blue-dk);transform:translateY(-1px);}
 .hamburger{display:none;width:40px;height:40px;background:#fff;border:1px solid var(--border);border-radius:11px;cursor:pointer;font-size:16px;align-items:center;justify-content:center;color:var(--text);flex-shrink:0;}
 
-/* PAGES */
 .page{display:none;animation:fadeUp .3s ease;}
 .page.active{display:block;}
 
@@ -138,7 +134,7 @@ tbody td{padding:11px 14px;font-size:13px;color:var(--text);vertical-align:middl
 .tbl-btn.danger:hover{background:var(--red);color:#fff;border-color:var(--red);}
 .tbl-actions{display:flex;gap:6px;flex-wrap:wrap;}
 
-/* MOBILE CARDS (students list on mobile) */
+/* MOBILE CARDS */
 .student-card-mobile{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px;display:none;}
 .scm-top{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
 .scm-avatar{width:44px;height:44px;border-radius:50%;background:var(--blue-lt);border:2px solid var(--blue-mid);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--blue);font-size:15px;overflow:hidden;flex-shrink:0;}
@@ -167,9 +163,8 @@ tbody td{padding:11px 14px;font-size:13px;color:var(--text);vertical-align:middl
 
 /* STUDENT DETAIL */
 .sd-header{display:flex;align-items:center;gap:16px;margin-bottom:20px;padding:16px;background:var(--blue-lt);border-radius:14px;border:1px solid var(--blue-mid);}
-.sd-avatar{width:60px;height:60px;border-radius:50%;border:3px solid var(--blue-mid);background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;}
+.sd-avatar{width:60px;height:60px;border-radius:50%;border:3px solid var(--blue-mid);background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;font-size:22px;color:var(--blue);}
 .sd-avatar img{width:100%;height:100%;object-fit:cover;}
-.sd-avatar-text{font-size:22px;color:var(--blue);}
 .sd-name{font-family:'Playfair Display',serif;font-size:17px;color:var(--text);}
 .sd-email{font-size:12px;color:var(--sub);margin-top:3px;}
 .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;}
@@ -177,19 +172,21 @@ tbody td{padding:11px 14px;font-size:13px;color:var(--text);vertical-align:middl
 .detail-item .dk{font-size:10px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px;display:flex;align-items:center;gap:5px;}
 .detail-item .dk i{color:var(--blue);}
 .detail-item .dv{font-size:13px;font-weight:600;color:var(--text);}
-
-/* DOC ROW */
 .doc-row{display:flex;align-items:center;justify-content:space-between;padding:11px 13px;background:var(--off);border-radius:10px;margin-bottom:8px;gap:10px;flex-wrap:wrap;}
 .doc-row-left{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;}
 .doc-row-left i{color:var(--blue);font-size:14px;}
-.doc-actions{display:flex;gap:7px;flex-wrap:wrap;}
-.doc-btn{padding:6px 13px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font);transition:.2s;border:1.5px solid;display:flex;align-items:center;gap:5px;}
+.doc-actions{display:flex;gap:7px;}
+.doc-btn{padding:6px 13px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font);transition:.2s;border:1.5px solid;display:flex;align-items:center;gap:5px;text-decoration:none;}
 .doc-btn.view{background:var(--blue-lt);color:var(--blue);border-color:var(--blue-mid);}
-.doc-btn.view:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
-
-/* IMAGE PREVIEW in modal */
-.img-preview-wrap{text-align:center;margin-bottom:14px;}
-.img-preview-wrap img{max-width:100%;max-height:60vh;border-radius:12px;border:2px solid var(--border);}
+.doc-btn.view:hover{background:var(--blue);color:#fff;}
+.issued-cert-item{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;background:var(--off);border-radius:10px;margin-bottom:8px;border:1px solid var(--border);gap:10px;flex-wrap:wrap;}
+.ici-left{display:flex;align-items:center;gap:10px;}
+.ici-icon{width:34px;height:34px;background:var(--blue-lt);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ici-icon i{color:var(--blue);font-size:14px;}
+.ici-title{font-size:13px;font-weight:700;}
+.ici-sub{font-size:11px;color:var(--sub);}
+.delete-btn{padding:6px 12px;border-radius:8px;background:rgba(239,68,68,.08);color:var(--red);border:1px solid rgba(239,68,68,.2);font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font);transition:.2s;}
+.delete-btn:hover{background:var(--red);color:#fff;}
 
 /* CERT FORM */
 .cert-form{background:var(--off);border-radius:14px;padding:16px;border:1px solid var(--border);}
@@ -206,15 +203,22 @@ tbody td{padding:11px 14px;font-size:13px;color:var(--text);vertical-align:middl
 .issue-btn{display:flex;align-items:center;gap:8px;padding:11px 22px;background:var(--green);color:#fff;border:none;border-radius:11px;font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;transition:.2s;}
 .issue-btn:hover{background:#16a34a;transform:translateY(-1px);}
 
-/* ISSUED CERTS */
-.issued-cert-item{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;background:var(--off);border-radius:10px;margin-bottom:8px;border:1px solid var(--border);gap:10px;flex-wrap:wrap;}
-.ici-left{display:flex;align-items:center;gap:10px;}
-.ici-icon{width:34px;height:34px;background:var(--blue-lt);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.ici-icon i{color:var(--blue);font-size:14px;}
-.ici-title{font-size:13px;font-weight:700;}
-.ici-sub{font-size:11px;color:var(--sub);}
-.delete-btn{padding:6px 12px;border-radius:8px;background:rgba(239,68,68,.08);color:var(--red);border:1px solid rgba(239,68,68,.2);font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font);transition:.2s;white-space:nowrap;}
-.delete-btn:hover{background:var(--red);color:#fff;}
+/* ID CARDS GRID */
+.id-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:4px;}
+.id-card-item{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:.2s;}
+.id-card-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);}
+
+/* IMAGE PREVIEW */
+.img-preview-wrap{text-align:center;margin-bottom:14px;}
+.img-preview-wrap img{max-width:100%;max-height:60vh;border-radius:12px;border:2px solid var(--border);}
+
+/* UPLOAD BOX */
+.upload-box-sm{border:2px dashed var(--border);border-radius:12px;padding:14px;text-align:center;cursor:pointer;background:#fafbff;transition:.25s;}
+.upload-box-sm:hover{border-color:var(--blue);background:var(--blue-lt);}
+.upload-box-sm.success{border-color:var(--green);background:#f0fdf4;}
+.upload-prog{height:4px;background:var(--border);border-radius:4px;overflow:hidden;margin-top:8px;display:none;}
+.upload-prog.show{display:block;}
+.upload-prog-fill{height:100%;background:var(--blue);border-radius:4px;transition:width .3s;}
 
 /* TOAST */
 .toast{position:fixed;bottom:20px;right:20px;z-index:9999;background:var(--text);color:#fff;padding:12px 16px;border-radius:13px;font-size:13px;font-weight:500;box-shadow:0 8px 32px rgba(15,22,48,.2);opacity:0;transform:translateY(60px);transition:.35s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;gap:9px;max-width:280px;}
@@ -227,7 +231,6 @@ tbody td{padding:11px 14px;font-size:13px;color:var(--text);vertical-align:middl
 .empty-msg i{font-size:38px;color:var(--blue-mid);display:block;margin-bottom:12px;}
 .empty-msg p{font-size:13px;}
 
-/* RESPONSIVE */
 @media(max-width:1024px){.stats-row{grid-template-columns:1fr 1fr;}}
 @media(max-width:768px){
   .sidebar{transform:translateX(-100%);}
@@ -235,8 +238,6 @@ tbody td{padding:11px 14px;font-size:13px;color:var(--text);vertical-align:middl
   .main{margin-left:0;max-width:100%;padding:16px 14px;}
   .hamburger{display:flex;}
   .stats-row{grid-template-columns:1fr 1fr;gap:10px;}
-  .sc-val{font-size:20px;}
-  /* Hide table on mobile, show cards */
   .tbl-wrap{display:none;}
   .student-card-mobile{display:block;}
   .detail-grid{grid-template-columns:1fr;}
@@ -245,16 +246,12 @@ tbody td{padding:11px 14px;font-size:13px;color:var(--text);vertical-align:middl
   .modal-body{padding:16px;}
   .modal-head{padding:16px 18px 14px;}
 }
-@media(max-width:480px){
-  .stats-row{grid-template-columns:1fr 1fr;}
-  .stat-c{padding:14px;}
-  .auth-card{padding:28px 20px;}
-  .sd-header{flex-direction:column;text-align:center;}
-}
+@media(max-width:480px){.stats-row{grid-template-columns:1fr 1fr;}.stat-c{padding:14px;}.auth-card{padding:28px 20px;}}
 </style>
 </head>
 <body>
 
+<!-- LOADER -->
 <div id="loader">
   <img src="https://i.ibb.co/RkxnyPxK/20260322154244.webp" class="loader-img" alt="DAN" onerror="this.style.display='none'"/>
   <div class="loader-title">DAN <span>Education</span></div>
@@ -274,7 +271,7 @@ tbody td{padding:11px 14px;font-size:13px;color:var(--text);vertical-align:middl
     <div id="auth-error" class="auth-error"><i class="fas fa-exclamation-circle"></i><span id="auth-err-msg"></span></div>
     <div class="inp-wrap">
       <label><i class="fas fa-envelope"></i> Admin Email</label>
-      <div class="inp-box"><i class="fas fa-envelope ico"></i><input type="email" id="a-email" placeholder="admin@danedu.in"/></div>
+      <div class="inp-box"><i class="fas fa-envelope ico"></i><input type="email" id="a-email" placeholder="admin@email.com"/></div>
     </div>
     <div class="inp-wrap">
       <label><i class="fas fa-lock"></i> Password</label>
@@ -282,7 +279,7 @@ tbody td{padding:11px 14px;font-size:13px;color:var(--text);vertical-align:middl
     </div>
     <div class="inp-wrap">
       <label><i class="fas fa-key"></i> Admin Secret Key</label>
-      <div class="inp-box"><i class="fas fa-key ico"></i><input type="password" id="a-secret" placeholder="Enter admin secret key" onkeydown="if(event.key==='Enter')doAdminLogin()"/></div>
+      <div class="inp-box"><i class="fas fa-key ico"></i><input type="password" id="a-secret" placeholder="Enter secret key" onkeydown="if(event.key==='Enter')doAdminLogin()"/></div>
     </div>
     <button class="auth-btn" onclick="doAdminLogin()">
       <span id="login-btn"><i class="fas fa-shield-halved"></i> Login as Admin</span>
@@ -294,7 +291,6 @@ tbody td{padding:11px 14px;font-size:13px;color:var(--text);vertical-align:middl
 <div id="app">
   <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
 
-  <!-- SIDEBAR -->
   <nav class="sidebar" id="sidebar">
     <div class="sb-brand">
       <img src="https://i.ibb.co/RkxnyPxK/20260322154244.webp" class="sb-brand-logo" alt="DAN" onerror="this.style.display='none'"/>
@@ -309,7 +305,7 @@ tbody td{padding:11px 14px;font-size:13px;color:var(--text);vertical-align:middl
       <div class="sb-item active" onclick="showPage('dashboard')"><i class="fas fa-chart-pie"></i> Dashboard</div>
       <div class="sb-item" onclick="showPage('students')"><i class="fas fa-users"></i> All Students</div>
       <div class="sb-section">Documents</div>
-      <div class="sb-item" onclick="showPage('cert-ms')"><i class="fas fa-scroll"></i> Certificate & Marksheet</div>
+      <div class="sb-item" onclick="showPage('certms')"><i class="fas fa-scroll"></i> Certificate &amp; Marksheet</div>
       <div class="sb-item" onclick="showPage('idcards')"><i class="fas fa-id-card"></i> ID Cards</div>
       <div class="sb-section">Links</div>
       <a class="sb-item" href="https://danedu.in/home.php" target="_blank"><i class="fas fa-globe"></i> Website</a>
@@ -320,7 +316,6 @@ tbody td{padding:11px 14px;font-size:13px;color:var(--text);vertical-align:middl
     </div>
   </nav>
 
-  <!-- MAIN -->
   <main class="main">
 
     <!-- DASHBOARD -->
@@ -328,7 +323,7 @@ tbody td{padding:11px 14px;font-size:13px;color:var(--text);vertical-align:middl
       <div class="topbar">
         <button class="hamburger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
         <div class="topbar-left"><h2>Dashboard</h2><p>Welcome to DAN Education Admin Panel</p></div>
-        <button class="topbar-btn" onclick="refreshAll()"><i class="fas fa-rotate"></i> <span class="btn-text">Refresh</span></button>
+        <button class="topbar-btn" onclick="refreshAll()"><i class="fas fa-rotate"></i> Refresh</button>
       </div>
       <div class="stats-row">
         <div class="stat-c"><div class="sc-icon"><i class="fas fa-users"></i></div><div class="sc-val" id="s-total">0</div><div class="sc-label">Total Students</div></div>
@@ -338,15 +333,15 @@ tbody td{padding:11px 14px;font-size:13px;color:var(--text);vertical-align:middl
       </div>
       <div class="card">
         <div class="card-head"><h4>Recent Students</h4><p id="recent-count">—</p></div>
-        <div class="tbl-wrap"><table>
-          <thead><tr><th>Name</th><th>Course</th><th>Phone</th><th>Docs</th><th>Action</th></tr></thead>
-          <tbody id="recent-tbody"><tr><td colspan="5"><div class="empty-msg"><i class="fas fa-circle-notch fa-spin"></i><p>Loading...</p></div></td></tr></tbody>
-        </table></div>
+        <div class="tbl-wrap">
+          <table><thead><tr><th>Name</th><th>Course</th><th>Phone</th><th>Docs</th><th>Action</th></tr></thead>
+          <tbody id="recent-tbody"><tr><td colspan="5"><div class="empty-msg"><i class="fas fa-circle-notch fa-spin"></i><p>Loading...</p></div></td></tr></tbody></table>
+        </div>
         <div id="recent-mobile"></div>
       </div>
     </div>
 
-    <!-- STUDENTS -->
+    <!-- ALL STUDENTS -->
     <div class="page" id="page-students">
       <div class="topbar">
         <button class="hamburger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
@@ -354,28 +349,28 @@ tbody td{padding:11px 14px;font-size:13px;color:var(--text);vertical-align:middl
       </div>
       <div class="card">
         <div class="search-bar"><i class="fas fa-magnifying-glass"></i><input type="text" id="search-inp" placeholder="Search by name, course or phone..." oninput="filterStudents()"/></div>
-        <div class="tbl-wrap"><table>
-          <thead><tr><th>#</th><th>Name</th><th>Father</th><th>Course</th><th>Phone</th><th>Docs</th><th>Action</th></tr></thead>
-          <tbody id="students-tbody"><tr><td colspan="7"><div class="empty-msg"><i class="fas fa-circle-notch fa-spin"></i><p>Loading...</p></div></td></tr></tbody>
-        </table></div>
+        <div class="tbl-wrap">
+          <table><thead><tr><th>#</th><th>Name</th><th>Father</th><th>Course</th><th>Phone</th><th>Docs</th><th>Action</th></tr></thead>
+          <tbody id="students-tbody"><tr><td colspan="7"><div class="empty-msg"><i class="fas fa-circle-notch fa-spin"></i><p>Loading...</p></div></td></tr></tbody></table>
+        </div>
         <div id="students-mobile"></div>
       </div>
     </div>
 
     <!-- CERTIFICATE & MARKSHEET -->
-    <div class="page" id="page-cert-ms">
+    <div class="page" id="page-certms">
       <div class="topbar">
         <button class="hamburger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
         <div class="topbar-left"><h2>Certificate &amp; Marksheet</h2><p>Sabhi students ke certificates manage karo</p></div>
-        <button class="topbar-btn" onclick="openAddCertModal()"><i class="fas fa-plus"></i> Issue Cert</button>
+        <button class="topbar-btn" onclick="openIssueCertModal()"><i class="fas fa-plus"></i> Issue Cert</button>
       </div>
       <div class="card">
-        <div class="search-bar"><i class="fas fa-magnifying-glass"></i><input type="text" id="cert-ms-search" placeholder="Student name ya course se search karo..." oninput="filterCertMs()"/></div>
-        <div class="tbl-wrap"><table>
-          <thead><tr><th>Student</th><th>Course</th><th>Issue Date</th><th>Grade</th><th>Roll</th><th>Certificate</th><th>Marksheet</th><th>Action</th></tr></thead>
-          <tbody id="cert-ms-tbody"><tr><td colspan="8"><div class="empty-msg"><i class="fas fa-circle-notch fa-spin"></i><p>Loading...</p></div></td></tr></tbody>
-        </table></div>
-        <div id="cert-ms-mobile"></div>
+        <div class="search-bar"><i class="fas fa-magnifying-glass"></i><input type="text" id="certms-search" placeholder="Student name ya course se search karo..." oninput="filterCertMs()"/></div>
+        <div class="tbl-wrap">
+          <table><thead><tr><th>Student</th><th>Course</th><th>Date</th><th>Grade</th><th>Roll</th><th>Certificate</th><th>Marksheet</th><th>Action</th></tr></thead>
+          <tbody id="certms-tbody"><tr><td colspan="8"><div class="empty-msg"><i class="fas fa-circle-notch fa-spin"></i><p>Loading...</p></div></td></tr></tbody></table>
+        </div>
+        <div id="certms-mobile"></div>
       </div>
     </div>
 
@@ -387,7 +382,7 @@ tbody td{padding:11px 14px;font-size:13px;color:var(--text);vertical-align:middl
       </div>
       <div class="card">
         <div class="search-bar"><i class="fas fa-magnifying-glass"></i><input type="text" id="idcard-search" placeholder="Student name ya course se search karo..." oninput="filterIDCards()"/></div>
-        <div id="idcards-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:4px">
+        <div class="id-grid" id="idcards-grid">
           <div class="empty-msg" style="grid-column:1/-1"><i class="fas fa-circle-notch fa-spin"></i><p>Loading...</p></div>
         </div>
       </div>
@@ -396,7 +391,7 @@ tbody td{padding:11px 14px;font-size:13px;color:var(--text);vertical-align:middl
   </main>
 </div>
 
-<!-- STUDENT MODAL -->
+<!-- STUDENT DETAIL MODAL -->
 <div class="modal-overlay" id="student-modal">
   <div class="modal">
     <div class="modal-head">
@@ -407,41 +402,27 @@ tbody td{padding:11px 14px;font-size:13px;color:var(--text);vertical-align:middl
   </div>
 </div>
 
-<!-- IMAGE PREVIEW MODAL -->
-<div class="modal-overlay" id="img-modal">
-  <div class="modal" style="max-width:480px">
-    <div class="modal-head">
-      <h3 id="img-title">Document Preview</h3>
-      <button class="modal-close" onclick="closeModal('img-modal')"><i class="fas fa-xmark"></i></button>
-    </div>
-    <div class="modal-body">
-      <div class="img-preview-wrap"><img id="preview-img" src="" alt="document"/></div>
-      <div style="text-align:center"><a id="preview-dl-link" href="" target="_blank" download class="topbar-btn" style="display:inline-flex;text-decoration:none"><i class="fas fa-download"></i> Download</a></div>
-    </div>
-  </div>
-</div>
-
-<div class="toast" id="toast"></div>
-
-<!-- ADD/EDIT CERT MODAL -->
-<div class="modal-overlay" id="add-cert-modal">
+<!-- ISSUE / EDIT CERT MODAL -->
+<div class="modal-overlay" id="cert-modal">
   <div class="modal" style="max-width:680px">
     <div class="modal-head">
-      <h3 id="add-cert-title">Issue Certificate</h3>
-      <button class="modal-close" onclick="closeModal('add-cert-modal')"><i class="fas fa-xmark"></i></button>
+      <h3 id="cert-modal-title">Certificate Issue Karo</h3>
+      <button class="modal-close" onclick="closeModal('cert-modal')"><i class="fas fa-xmark"></i></button>
     </div>
     <div class="modal-body">
       <div class="inp-wrap" style="margin-bottom:14px">
-        <label style="font-size:11px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:7px">Select Student *</label>
-        <div style="position:relative"><i class="fas fa-user" style="position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--sub);font-size:13px"></i>
-        <select id="acm-student" style="width:100%;padding:12px 14px 12px 38px;border:1.5px solid var(--border);border-radius:12px;font-family:var(--font);font-size:13px;color:var(--text);background:#fff;outline:none;appearance:none">
-          <option value="">-- Student chuniye --</option>
-        </select></div>
+        <label style="font-size:11px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:7px">Student Select Karo *</label>
+        <div style="position:relative">
+          <i class="fas fa-user" style="position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--sub);font-size:13px;pointer-events:none"></i>
+          <select id="cm-student" style="width:100%;padding:12px 14px 12px 38px;border:1.5px solid var(--border);border-radius:12px;font-family:var(--font);font-size:13px;color:var(--text);background:#fff;outline:none">
+            <option value="">-- Student chuniye --</option>
+          </select>
+        </div>
       </div>
       <div class="cf-grid">
-        <div class="cf-group"><label>Course Name *</label><input type="text" id="acm-course" placeholder="e.g. DCA, ADCA, Tally..."/></div>
+        <div class="cf-group"><label>Course *</label><input type="text" id="cm-course" placeholder="e.g. DCA, ADCA..."/></div>
         <div class="cf-group"><label>Grade *</label>
-          <select id="acm-grade">
+          <select id="cm-grade">
             <option value="AA">AA – Outstanding (90-100%)</option>
             <option value="A+" selected>A+ – Excellent (80-89%)</option>
             <option value="A">A – Very Good (60-79%)</option>
@@ -449,49 +430,54 @@ tbody td{padding:11px 14px;font-size:13px;color:var(--text);vertical-align:middl
             <option value="B">B – Satisfactory (30-39%)</option>
           </select>
         </div>
-        <div class="cf-group"><label>Issue Date *</label><input type="date" id="acm-date"/></div>
-        <div class="cf-group"><label>Roll Number</label><input type="text" id="acm-roll" placeholder="e.g. DAN2024001"/></div>
-        <div class="cf-group"><label>Duration From</label><input type="date" id="acm-from"/></div>
-        <div class="cf-group"><label>Duration To</label><input type="date" id="acm-to"/></div>
-        <div class="cf-group full"><label>Subjects &amp; Marks (ek line mein ek subject: Subject: marks/total)</label><textarea id="acm-marks" rows="4" placeholder="Present Tense: 78/100&#10;Future Tense: 82/100&#10;Parts of Speech: 85/100"></textarea></div>
+        <div class="cf-group"><label>Issue Date *</label><input type="date" id="cm-date"/></div>
+        <div class="cf-group"><label>Roll Number</label><input type="text" id="cm-roll" placeholder="e.g. DAN2024001"/></div>
+        <div class="cf-group"><label>Duration From</label><input type="date" id="cm-from"/></div>
+        <div class="cf-group"><label>Duration To</label><input type="date" id="cm-to"/></div>
         <div class="cf-group full">
-          <label><i class="fas fa-scroll" style="color:var(--blue)"></i> Certificate Image Upload (ImgBB)</label>
-          <div id="acm-cert-box" style="border:2px dashed var(--border);border-radius:12px;padding:14px;text-align:center;cursor:pointer;background:#fafbff;transition:.25s" onclick="document.getElementById('acm-cert-file').click()">
-            <input type="file" id="acm-cert-file" accept="image/*" style="display:none" onchange="acmUpload('cert',this)"/>
-            <div id="acm-cert-prev"><i class="fas fa-scroll" style="font-size:24px;color:var(--blue-mid);display:block;margin-bottom:6px"></i><div style="font-size:13px;font-weight:600;color:var(--sub)">Certificate image upload karo</div><div style="font-size:11px;color:#aaa;margin-top:2px">Student ke My Certificates mein dikhega</div></div>
-            <div id="acm-cert-prog" style="display:none;margin-top:8px;height:4px;background:var(--border);border-radius:4px;overflow:hidden"><div id="acm-cert-fill" style="width:0%;height:100%;background:var(--blue);transition:width .3s"></div></div>
+          <label>Subjects &amp; Marks (ek line mein: Subject: marks/total)</label>
+          <textarea id="cm-marks" rows="4" placeholder="Present Tense: 78/100&#10;Future Tense: 82/100&#10;Parts of Speech: 85/100"></textarea>
+        </div>
+        <div class="cf-group full">
+          <label><i class="fas fa-scroll" style="color:var(--blue)"></i> Certificate Image (ImgBB)</label>
+          <div class="upload-box-sm" id="cm-cert-box" onclick="document.getElementById('cm-cert-file').click()">
+            <input type="file" id="cm-cert-file" accept="image/*" style="display:none" onchange="cmUpload('cert',this)"/>
+            <div id="cm-cert-prev"><i class="fas fa-scroll" style="font-size:22px;color:var(--blue-mid);display:block;margin-bottom:6px"></i><div style="font-size:13px;font-weight:600;color:var(--sub)">Certificate image upload karo</div></div>
+            <div class="upload-prog" id="cm-cert-prog"><div class="upload-prog-fill" id="cm-cert-fill" style="width:0%"></div></div>
           </div>
         </div>
         <div class="cf-group full">
-          <label><i class="fas fa-table-list" style="color:var(--blue)"></i> Mark Sheet Image Upload (ImgBB)</label>
-          <div id="acm-ms-box" style="border:2px dashed var(--border);border-radius:12px;padding:14px;text-align:center;cursor:pointer;background:#fafbff;transition:.25s" onclick="document.getElementById('acm-ms-file').click()">
-            <input type="file" id="acm-ms-file" accept="image/*" style="display:none" onchange="acmUpload('ms',this)"/>
-            <div id="acm-ms-prev"><i class="fas fa-table-list" style="font-size:24px;color:var(--blue-mid);display:block;margin-bottom:6px"></i><div style="font-size:13px;font-weight:600;color:var(--sub)">Mark Sheet image upload karo</div><div style="font-size:11px;color:#aaa;margin-top:2px">Optional</div></div>
-            <div id="acm-ms-prog" style="display:none;margin-top:8px;height:4px;background:var(--border);border-radius:4px;overflow:hidden"><div id="acm-ms-fill" style="width:0%;height:100%;background:var(--blue);transition:width .3s"></div></div>
+          <label><i class="fas fa-table-list" style="color:var(--blue)"></i> Mark Sheet Image (ImgBB)</label>
+          <div class="upload-box-sm" id="cm-ms-box" onclick="document.getElementById('cm-ms-file').click()">
+            <input type="file" id="cm-ms-file" accept="image/*" style="display:none" onchange="cmUpload('ms',this)"/>
+            <div id="cm-ms-prev"><i class="fas fa-table-list" style="font-size:22px;color:var(--blue-mid);display:block;margin-bottom:6px"></i><div style="font-size:13px;font-weight:600;color:var(--sub)">Mark Sheet image upload karo (optional)</div></div>
+            <div class="upload-prog" id="cm-ms-prog"><div class="upload-prog-fill" id="cm-ms-fill" style="width:0%"></div></div>
           </div>
         </div>
       </div>
       <div class="cf-btns" style="margin-top:4px">
-        <button class="issue-btn" id="acm-submit-btn" onclick="submitCertModal()"><i class="fas fa-paper-plane"></i> <span id="acm-btn-text">Issue Certificate</span></button>
-        <button style="padding:11px 18px;border-radius:11px;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-family:var(--font);font-size:13px;font-weight:600" onclick="closeModal('add-cert-modal')">Cancel</button>
+        <button class="issue-btn" onclick="submitCertModal()"><i class="fas fa-paper-plane"></i> <span id="cm-btn-text">Issue Certificate</span></button>
+        <button style="padding:11px 18px;border-radius:11px;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-family:var(--font);font-size:13px;font-weight:600" onclick="closeModal('cert-modal')">Cancel</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- CERT IMAGE VIEW MODAL -->
-<div class="modal-overlay" id="cert-img-modal">
-  <div class="modal" style="max-width:560px">
+<!-- IMAGE PREVIEW MODAL -->
+<div class="modal-overlay" id="img-modal">
+  <div class="modal" style="max-width:500px">
     <div class="modal-head">
-      <h3 id="cert-img-title">Certificate Preview</h3>
-      <button class="modal-close" onclick="closeModal('cert-img-modal')"><i class="fas fa-xmark"></i></button>
+      <h3 id="img-modal-title">Preview</h3>
+      <button class="modal-close" onclick="closeModal('img-modal')"><i class="fas fa-xmark"></i></button>
     </div>
-    <div class="modal-body" style="text-align:center">
-      <img id="cert-img-preview" src="" style="max-width:100%;border-radius:12px;border:1px solid var(--border)" alt="cert"/>
-      <div style="margin-top:14px"><a id="cert-img-dl" href="" download target="_blank" class="topbar-btn" style="display:inline-flex;text-decoration:none"><i class="fas fa-download"></i> Download</a></div>
+    <div class="modal-body">
+      <div class="img-preview-wrap"><img id="img-modal-img" src="" alt="preview"/></div>
+      <div style="text-align:center"><a id="img-modal-dl" href="" download target="_blank" class="topbar-btn" style="display:inline-flex;text-decoration:none"><i class="fas fa-download"></i> Download</a></div>
     </div>
   </div>
 </div>
+
+<div class="toast" id="toast"></div>
 
 <script type="module">
 import { initializeApp }   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -510,110 +496,163 @@ const FB = initializeApp({
   appId: "1:219710147503:web:d9b7d444807e4b9f05fd5a"
 });
 
-const auth = getAuth(FB), rtdb = getDatabase(FB);
-
-// Admin secret key — change this to your own secret
+const auth = getAuth(FB);
+const rtdb = getDatabase(FB);
 const ADMIN_SECRET = "DAN@Admin2024";
-const IMGBB_KEY = "47f80603d14199d60b8f20715d68d1e9";
+const IMGBB_KEY    = "47f80603d14199d60b8f20715d68d1e9";
 
-let allStudents = {}, allCerts = [], isAdminVerified = false;
+let allStudents = {};
+let isAdmin = false;
+let cmCertUrl = '';
+let cmMsUrl   = '';
+let cmEditUid = '';
+let cmEditCid = '';
 
-setTimeout(()=>document.getElementById('loader').classList.add('hide'), 1800);
+/* ── SAFE DOM HELPERS ── */
+function el(id){ return document.getElementById(id); }
+function setTxt(id, v){ const e=el(id); if(e) e.textContent=String(v); }
+function setHtml(id, v){ const e=el(id); if(e) e.innerHTML=v; }
+function setSrc(id, v){ const e=el(id); if(e) e.src=v; }
+function setHref(id, v){ const e=el(id); if(e) e.href=v; }
+function setCss(id, p, v){ const e=el(id); if(e) e.style[p]=v; }
+function addCls(id, c){ const e=el(id); if(e) e.classList.add(c); }
+function remCls(id, c){ const e=el(id); if(e) e.classList.remove(c); }
+function show(id){ const e=el(id); if(e) e.classList.add('show'); }
+function hide(id){ const e=el(id); if(e) e.classList.remove('show'); }
+
+/* ── LOADER ── */
+setTimeout(() => addCls('loader','hide'), 1800);
 
 /* ── AUTH STATE ── */
-onAuthStateChanged(auth, async u=>{
-  if(u && isAdminVerified){
-    document.getElementById('auth-screen').style.display='none';
-    document.getElementById('app').classList.add('show');
-    document.getElementById('sb-admin-name').textContent=u.displayName||u.email.split('@')[0];
-    if(u.photoURL){ const img=document.getElementById('sb-avatar-img'); img.src=u.photoURL; img.style.display='block'; }
+onAuthStateChanged(auth, async u => {
+  if (u && isAdmin) {
+    el('auth-screen').style.display = 'none';
+    el('app').classList.add('show');
+    setTxt('sb-admin-name', u.displayName || u.email.split('@')[0]);
+    if (u.photoURL) { setSrc('sb-avatar-img', u.photoURL); el('sb-avatar-img').style.display='block'; }
     await loadAll();
-  } else if(!u){
-    isAdminVerified = false;
-    document.getElementById('auth-screen').style.display='flex';
-    document.getElementById('app').classList.remove('show');
+  } else {
+    el('auth-screen').style.display = 'flex';
+    el('app').classList.remove('show');
   }
 });
 
-window.doAdminLogin=async()=>{
-  const e=document.getElementById('a-email').value.trim();
-  const p=document.getElementById('a-pass').value;
-  const secret=document.getElementById('a-secret').value.trim();
-  if(!e||!p) return showAuthErr('Please enter your email and password.');
-  if(!secret) return showAuthErr('Please enter the Admin Secret Key.');
-  if(secret !== ADMIN_SECRET) return showAuthErr('Wrong Admin Secret Key! Contact DAN Education admin.');
-  setLoginLoad(true);
-  try{
-    await signInWithEmailAndPassword(auth,e,p);
-    isAdminVerified = true;
+/* ── LOGIN ── */
+window.doAdminLogin = async () => {
+  const email  = (el('a-email').value  || '').trim();
+  const pass   = (el('a-pass').value   || '');
+  const secret = (el('a-secret').value || '').trim();
+  if (!email || !pass)   return showAuthErr('Please enter email and password.');
+  if (!secret)           return showAuthErr('Please enter the Admin Secret Key.');
+  if (secret !== ADMIN_SECRET) return showAuthErr('Wrong Admin Secret Key!');
+  setHtml('login-btn', '<span class="spinner"></span> Please wait...');
+  try {
+    await signInWithEmailAndPassword(auth, email, pass);
+    isAdmin = true;
     const u = auth.currentUser;
-    document.getElementById('auth-screen').style.display='none';
-    document.getElementById('app').classList.add('show');
-    document.getElementById('sb-admin-name').textContent=u.displayName||u.email.split('@')[0];
-    if(u.photoURL){ const img=document.getElementById('sb-avatar-img'); img.src=u.photoURL; img.style.display='block'; }
+    el('auth-screen').style.display = 'none';
+    el('app').classList.add('show');
+    setTxt('sb-admin-name', u.displayName || u.email.split('@')[0]);
+    if (u.photoURL) { setSrc('sb-avatar-img', u.photoURL); el('sb-avatar-img').style.display='block'; }
     await loadAll();
+  } catch(err) {
+    showAuthErr(fbErr(err.code));
+  } finally {
+    setHtml('login-btn', '<i class="fas fa-shield-halved"></i> Login as Admin');
   }
-  catch(err){ isAdminVerified=false; showAuthErr(fbErr(err.code)); }
-  finally{ setLoginLoad(false); }
 };
-window.doLogout=async()=>{ isAdminVerified=false; await signOut(auth); showToast('Logged out'); };
+
+window.doLogout = async () => { isAdmin=false; await signOut(auth); showToast('Logged out'); };
 
 /* ── LOAD DATA ── */
-async function loadAll(){
-  try{
-    const snap=await get(ref(rtdb,'students'));
-    allStudents=snap.exists()?snap.val():{};
+async function loadAll() {
+  try {
+    const snap = await get(ref(rtdb, 'students'));
+    allStudents = snap.exists() ? snap.val() : {};
     buildStats();
     buildRecentTable();
     buildStudentsTable();
-    buildCertsTable();
-  }catch(e){ console.error(e); showToast('Error loading data','red'); }
+    buildCertMsTable();
+    buildIDCardsGrid();
+  } catch(e) {
+    console.error(e);
+    showToast('Error loading: ' + e.message, 'red');
+  }
 }
+
+window.refreshAll = async () => { showToast('Refreshing...','blue'); await loadAll(); showToast('Refreshed! ✅','green'); };
+
+/* ── HELPERS ── */
+function docsCount(s) { return [s.aadhaarURL, s.admitURL, s.photoURL].filter(Boolean).length; }
 
 /* ── STATS ── */
-function buildStats(){
-  const studs=Object.values(allStudents);
-  document.getElementById('s-total').textContent=studs.length;
-  let docs=0,certs=0,complete=0;
-  studs.forEach(s=>{ if(s.aadhaarURL||s.admitURL||s.photoURL) docs++; if(s.certificates) certs+=Object.keys(s.certificates).length; if(s.name&&s.course&&s.aadhaarURL&&s.admitURL&&s.photoURL) complete++; });
-  document.getElementById('s-docs').textContent=docs;
-  document.getElementById('s-certs').textContent=certs;
-  document.getElementById('s-complete').textContent=complete;
+function buildStats() {
+  const studs = Object.values(allStudents);
+  setTxt('s-total', studs.length);
+  let docs=0, certs=0, complete=0;
+  studs.forEach(s => {
+    if (s.aadhaarURL || s.admitURL || s.photoURL) docs++;
+    if (s.certificates) certs += Object.keys(s.certificates).length;
+    if (s.name && s.course && s.aadhaarURL && s.admitURL && s.photoURL) complete++;
+  });
+  setTxt('s-docs', docs);
+  setTxt('s-certs', certs);
+  setTxt('s-complete', complete);
 }
 
-/* ── TABLES ── */
-function docsCount(s){ return [s.aadhaarURL,s.admitURL,s.photoURL].filter(Boolean).length; }
-
-function buildRecentTable(filter=''){
-  const studs=Object.entries(allStudents);
-  document.getElementById('recent-count').textContent=studs.length+' students total';
-  const recent=studs.slice(-8).reverse();
-  // Desktop table
-  document.getElementById('recent-tbody').innerHTML=!recent.length
-    ?`<tr><td colspan="5"><div class="empty-msg"><i class="fas fa-users-slash"></i><p>No students yet</p></div></td></tr>`
-    :recent.map(([uid,s])=>`<tr><td><strong>${s.name||'—'}</strong></td><td>${s.course||'—'}</td><td>${s.phone||'—'}</td><td><span class="badge-sm ${docsCount(s)===3?'badge-done':'badge-pending'}">${docsCount(s)}/3</span></td><td><button class="tbl-btn" onclick="openStudentModal('${uid}')"><i class="fas fa-eye"></i> View</button></td></tr>`).join('');
-  // Mobile cards
-  document.getElementById('recent-mobile').innerHTML=recent.map(([uid,s])=>buildStudentCard(uid,s)).join('');
+/* ── RECENT TABLE ── */
+function buildRecentTable() {
+  const studs  = Object.entries(allStudents);
+  setTxt('recent-count', studs.length + ' students total');
+  const recent = studs.slice(-8).reverse();
+  const desktopHtml = recent.length
+    ? recent.map(([uid,s]) =>
+        `<tr>
+          <td><strong>${s.name||'—'}</strong></td>
+          <td>${s.course||'—'}</td>
+          <td>${s.phone||'—'}</td>
+          <td><span class="badge-sm ${docsCount(s)===3?'badge-done':'badge-pending'}">${docsCount(s)}/3</span></td>
+          <td><button class="tbl-btn" onclick="openStudentModal('${uid}')"><i class="fas fa-eye"></i> View</button></td>
+        </tr>`).join('')
+    : `<tr><td colspan="5"><div class="empty-msg"><i class="fas fa-users-slash"></i><p>No students yet</p></div></td></tr>`;
+  setHtml('recent-tbody', desktopHtml);
+  setHtml('recent-mobile', recent.map(([uid,s]) => buildStudentCard(uid,s)).join(''));
 }
 
-function buildStudentsTable(filter=''){
-  let entries=Object.entries(allStudents);
-  if(filter) entries=entries.filter(([,s])=>`${s.name||''} ${s.course||''} ${s.phone||''}`.toLowerCase().includes(filter.toLowerCase()));
-  // Desktop
-  document.getElementById('students-tbody').innerHTML=!entries.length
-    ?`<tr><td colspan="7"><div class="empty-msg"><i class="fas fa-magnifying-glass"></i><p>No students found</p></div></td></tr>`
-    :entries.map(([uid,s],i)=>`<tr><td style="color:var(--sub)">${i+1}</td><td><strong>${s.name||'—'}</strong></td><td>${s.father||'—'}</td><td>${s.course||'—'}</td><td>${s.phone||'—'}</td><td><span class="badge-sm ${docsCount(s)===3?'badge-done':'badge-pending'}">${docsCount(s)}/3</span></td><td><div class="tbl-actions"><button class="tbl-btn" onclick="openStudentModal('${uid}')"><i class="fas fa-eye"></i> View</button><button class="tbl-btn danger" onclick="deleteStudent('${uid}','${(s.name||'').replace(/'/g,"\\'")}')"><i class="fas fa-trash"></i></button></div></td></tr>`).join('');
-  // Mobile
-  document.getElementById('students-mobile').innerHTML=entries.map(([uid,s])=>buildStudentCard(uid,s)).join('');
+/* ── ALL STUDENTS TABLE ── */
+function buildStudentsTable(filter) {
+  let entries = Object.entries(allStudents);
+  if (filter) {
+    const f = filter.toLowerCase();
+    entries = entries.filter(([,s]) => `${s.name||''} ${s.course||''} ${s.phone||''}`.toLowerCase().includes(f));
+  }
+  const desktopHtml = entries.length
+    ? entries.map(([uid,s],i) =>
+        `<tr>
+          <td style="color:var(--sub)">${i+1}</td>
+          <td><strong>${s.name||'—'}</strong></td>
+          <td>${s.father||'—'}</td>
+          <td>${s.course||'—'}</td>
+          <td>${s.phone||'—'}</td>
+          <td><span class="badge-sm ${docsCount(s)===3?'badge-done':'badge-pending'}">${docsCount(s)}/3</span></td>
+          <td>
+            <div class="tbl-actions">
+              <button class="tbl-btn" onclick="openStudentModal('${uid}')"><i class="fas fa-eye"></i> View</button>
+              <button class="tbl-btn danger" onclick="deleteStudent('${uid}')"><i class="fas fa-trash"></i></button>
+            </div>
+          </td>
+        </tr>`).join('')
+    : `<tr><td colspan="7"><div class="empty-msg"><i class="fas fa-magnifying-glass"></i><p>No students found</p></div></td></tr>`;
+  setHtml('students-tbody', desktopHtml);
+  setHtml('students-mobile', entries.map(([uid,s]) => buildStudentCard(uid,s)).join(''));
 }
 
-function buildStudentCard(uid, s){
-  const photoSrc = s.photoURL || '';
-  const initials = (s.name||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+function buildStudentCard(uid, s) {
+  const ini = (s.name||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
   return `<div class="student-card-mobile">
     <div class="scm-top">
-      <div class="scm-avatar">
-        ${photoSrc?`<img src="${photoSrc}" onerror="this.style.display='none'" alt=""/>`:''}<span style="${photoSrc?'display:none':''}">${initials}</span>
+      <div class="scm-avatar">${s.photoURL ? `<img src="${s.photoURL}" onerror="this.style.display='none'" alt=""/>` : ''}
+        <span style="${s.photoURL?'display:none':''}">${ini}</span>
       </div>
       <div><div class="scm-name">${s.name||'—'}</div><div class="scm-course">${s.course||'No course'}</div></div>
       <span class="badge-sm ${docsCount(s)===3?'badge-done':'badge-pending'}" style="margin-left:auto">${docsCount(s)}/3 docs</span>
@@ -625,446 +664,394 @@ function buildStudentCard(uid, s){
       <div class="scm-info-item"><div class="k">Certs</div><div class="v">${s.certificates?Object.keys(s.certificates).length:0} issued</div></div>
     </div>
     <div class="scm-actions">
-      <button class="scm-btn view" onclick="openStudentModal('${uid}')"><i class="fas fa-eye"></i> View Details</button>
-      <button class="scm-btn del" onclick="deleteStudent('${uid}','${(s.name||'').replace(/'/g,"\\'")}')"><i class="fas fa-trash"></i></button>
+      <button class="scm-btn view" onclick="openStudentModal('${uid}')"><i class="fas fa-eye"></i> View</button>
+      <button class="scm-btn del" onclick="deleteStudent('${uid}')"><i class="fas fa-trash"></i></button>
     </div>
   </div>`;
 }
 
-function buildCertsTable(filter=''){
-  allCerts=[];
-  Object.entries(allStudents).forEach(([uid,s])=>{ if(s.certificates) Object.entries(s.certificates).forEach(([cid,c])=>{ allCerts.push({uid,cid,studentName:s.name||'—',...c}); }); });
-  let certs=allCerts;
-  if(filter) certs=certs.filter(c=>`${c.studentName} ${c.course||''}`.toLowerCase().includes(filter.toLowerCase()));
-  // Desktop
-  document.getElementById('certs-tbody').innerHTML=!certs.length
-    ?`<tr><td colspan="5"><div class="empty-msg"><i class="fas fa-scroll"></i><p>No certificates yet</p></div></td></tr>`
-    :certs.map(c=>`<tr><td><strong>${c.studentName}</strong></td><td>${c.course||'—'}</td><td>${c.issueDate||'—'}</td><td><span class="badge-sm badge-issued">${c.grade||'—'}</span></td><td><div class="tbl-actions"><button class="tbl-btn" onclick="openStudentModal('${c.uid}')"><i class="fas fa-eye"></i> Student</button><button class="tbl-btn danger" onclick="deleteCert('${c.uid}','${c.cid}')"><i class="fas fa-trash"></i></button></div></td></tr>`).join('');
-  // Mobile
-  document.getElementById('certs-mobile').innerHTML=certs.map(c=>`<div class="student-card-mobile"><div class="scm-top"><div class="ici-icon" style="width:44px;height:44px;background:var(--blue-lt);border-radius:12px;display:flex;align-items:center;justify-content:center"><i class="fas fa-scroll" style="color:var(--blue)"></i></div><div><div class="scm-name">${c.studentName}</div><div class="scm-course">${c.course||'—'} | Grade: ${c.grade||'—'}</div></div><span class="badge-sm badge-issued" style="margin-left:auto">${c.grade||'—'}</span></div><div class="scm-actions"><button class="scm-btn view" onclick="openStudentModal('${c.uid}')"><i class="fas fa-eye"></i> View Student</button><button class="scm-btn del" onclick="deleteCert('${c.uid}','${c.cid}')"><i class="fas fa-trash"></i></button></div></div>`).join('');
-}
-
-/* ── STUDENT MODAL ── */
-window.openStudentModal = uid => {
-  const s = allStudents[uid]; if(!s) return;
-  document.getElementById('modal-title').textContent = s.name||'Student Details';
-  const certs = s.certificates ? Object.entries(s.certificates) : [];
-  const initials = (s.name||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
-  document.getElementById('modal-body').innerHTML = `
-    <div class="sd-header">
-      <div class="sd-avatar">
-        ${s.photoURL?`<img src="${s.photoURL}" onerror="this.style.display='none'" alt="photo"/><span class="sd-avatar-text" style="${s.photoURL?'display:none':''}">${initials}</span>`:`<span class="sd-avatar-text">${initials}</span>`}
-      </div>
-      <div><div class="sd-name">${s.name||'—'}</div><div class="sd-email">${s.email||'—'}</div>${s.course?`<span class="badge-sm badge-issued" style="margin-top:6px"><i class="fas fa-book-open"></i> ${s.course}</span>`:''}</div>
-    </div>
-    <div class="detail-grid">
-      <div class="detail-item"><div class="dk"><i class="fas fa-person"></i> Father's Name</div><div class="dv">${s.father||'—'}</div></div>
-      <div class="detail-item"><div class="dk"><i class="fas fa-person-dress"></i> Mother's Name</div><div class="dv">${s.mother||'—'}</div></div>
-      <div class="detail-item"><div class="dk"><i class="fas fa-phone"></i> Phone</div><div class="dv">${s.phone||'—'}</div></div>
-      <div class="detail-item"><div class="dk"><i class="fas fa-envelope"></i> Email</div><div class="dv" style="font-size:11px">${s.email||'—'}</div></div>
-      <div class="detail-item" style="grid-column:1/-1"><div class="dk"><i class="fas fa-location-dot"></i> Center Address</div><div class="dv">${s.center||'—'}</div></div>
-    </div>
-    <h5 style="font-size:13px;font-weight:700;margin-bottom:11px;display:flex;align-items:center;gap:7px"><i class="fas fa-folder-open" style="color:var(--blue)"></i> Documents</h5>
-    ${docRow('Aadhaar Card','fa-id-card',s.aadhaarURL)}
-    ${docRow('Admit Card','fa-file-lines',s.admitURL)}
-    ${docRow('Student Photo','fa-camera',s.photoURL)}
-    <h5 style="font-size:13px;font-weight:700;margin:16px 0 11px;display:flex;align-items:center;gap:7px"><i class="fas fa-award" style="color:var(--blue)"></i> Certificates (${certs.length})</h5>
-    ${certs.map(([cid,c])=>`<div class="issued-cert-item"><div class="ici-left"><div class="ici-icon"><i class="fas fa-scroll"></i></div><div><div class="ici-title">${c.course||'Certificate'}</div><div class="ici-sub">Date: ${c.issueDate||'—'} | Grade: ${c.grade||'—'} | Roll: ${c.roll||'—'}</div></div></div><button class="delete-btn" onclick="deleteCert('${uid}','${cid}')"><i class="fas fa-trash"></i> Delete</button></div>`).join('')||`<p style="color:var(--sub);font-size:13px;margin-bottom:14px">No certificates issued yet.</p>`}
-    <div class="cert-form" style="margin-top:6px">
-      <h5><i class="fas fa-plus-circle"></i> Issue New Certificate</h5>
-      <div class="cf-grid">
-        <div class="cf-group"><label>Course *</label><input type="text" id="cf-course" value="${s.course||''}" placeholder="Course name"/></div>
-        <div class="cf-group"><label>Grade *</label><select id="cf-grade"><option value="AA">AA – Outstanding</option><option value="A+" selected>A+ – Excellent</option><option value="A">A – Very Good</option><option value="B+">B+ – Good</option><option value="B">B – Satisfactory</option></select></div>
-        <div class="cf-group"><label>Issue Date *</label><input type="date" id="cf-date" value="${new Date().toISOString().split('T')[0]}"/></div>
-        <div class="cf-group"><label>Roll Number</label><input type="text" id="cf-roll" placeholder="e.g. DAN001"/></div>
-        <div class="cf-group"><label>Duration From</label><input type="date" id="cf-from"/></div>
-        <div class="cf-group"><label>Duration To</label><input type="date" id="cf-to"/></div>
-        <div class="cf-group full"><label>Subjects & Marks (one per line: Subject: obtained/total)</label><textarea id="cf-marks" placeholder="e.g.\nPresent Tense: 78/100\nFuture Tense: 82/100\nParts of Speech: 85/100"></textarea></div>
-        <div class="cf-group full">
-          <label><i class="fas fa-scroll" style="color:var(--blue)"></i> Certificate Image (ImgBB se upload karo)</label>
-          <div id="cert-img-upload-box" style="border:2px dashed var(--border);border-radius:12px;padding:14px;text-align:center;cursor:pointer;background:#fafbff;transition:.25s" onclick="document.getElementById('cf-cert-img').click()">
-            <input type="file" id="cf-cert-img" accept="image/*" style="display:none" onchange="adminUploadImg('cert',this)"/>
-            <div id="cert-img-preview-wrap"><i class="fas fa-scroll" style="font-size:26px;color:var(--blue-mid);margin-bottom:7px;display:block"></i><div style="font-size:13px;font-weight:600;color:var(--sub)">Click to upload Certificate image</div><div style="font-size:11px;color:#aaa;margin-top:3px">Student ke My Certificates mein show hoga</div></div>
-            <div id="prog-cert-img" style="display:none;margin-top:8px;height:4px;background:var(--border);border-radius:4px;overflow:hidden"><div id="progfill-cert-img" style="width:0%;height:100%;background:var(--blue);border-radius:4px;transition:width .3s"></div></div>
-          </div>
-        </div>
-        <div class="cf-group full">
-          <label><i class="fas fa-table-list" style="color:var(--blue)"></i> Mark Sheet Image (ImgBB se upload karo)</label>
-          <div id="ms-img-upload-box" style="border:2px dashed var(--border);border-radius:12px;padding:14px;text-align:center;cursor:pointer;background:#fafbff;transition:.25s" onclick="document.getElementById('cf-ms-img').click()">
-            <input type="file" id="cf-ms-img" accept="image/*" style="display:none" onchange="adminUploadImg('ms',this)"/>
-            <div id="ms-img-preview-wrap"><i class="fas fa-table-list" style="font-size:26px;color:var(--blue-mid);margin-bottom:7px;display:block"></i><div style="font-size:13px;font-weight:600;color:var(--sub)">Click to upload Mark Sheet image</div><div style="font-size:11px;color:#aaa;margin-top:3px">Optional — agar alag marksheet hai toh</div></div>
-            <div id="prog-ms-img" style="display:none;margin-top:8px;height:4px;background:var(--border);border-radius:4px;overflow:hidden"><div id="progfill-ms-img" style="width:0%;height:100%;background:var(--blue);border-radius:4px;transition:width .3s"></div></div>
-          </div>
-        </div>
-      </div>
-      <div class="cf-btns">
-        <button class="issue-btn" onclick="issueCert('${uid}')"><i class="fas fa-paper-plane"></i> Issue Certificate</button>
-        <button style="padding:11px 18px;border-radius:11px;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-family:var(--font);font-size:13px;font-weight:600" onclick="closeModal('student-modal')">Cancel</button>
-      </div>
-    </div>`;
-  document.getElementById('student-modal').classList.add('show');
-};
-
-function docRow(label, icon, url){
-  if(!url) return `<div class="doc-row"><div class="doc-row-left"><i class="fas ${icon}"></i>${label}</div><span class="badge-sm badge-pending"><i class="fas fa-clock"></i> Not Uploaded</span></div>`;
-  return `<div class="doc-row"><div class="doc-row-left"><i class="fas ${icon}"></i>${label}<span class="badge-sm badge-done" style="margin-left:6px"><i class="fas fa-check"></i> Uploaded</span></div><div class="doc-actions"><button class="doc-btn view" onclick="previewDoc('${url}','${label}')"><i class="fas fa-eye"></i> View</button><a class="doc-btn view" href="${url}" target="_blank" download style="text-decoration:none"><i class="fas fa-download"></i> Download</a></div></div>`;
-}
-
-/* ── IMGBB UPLOAD (admin) ── */
-let adminCertImgUrl = '', adminMsImgUrl = '';
-
-async function adminImgBBUpload(file, type) {
-  const wrap = document.getElementById(type+'-img-upload-box');
-  const prog = document.getElementById('prog-'+type+'-img');
-  const fill = document.getElementById('progfill-'+type+'-img');
-  const status = document.getElementById(type+'-img-url-status');
-  wrap.style.borderColor='var(--blue)'; wrap.style.background='var(--blue-lt)';
-  prog.style.display='block'; fill.style.width='20%';
-  status.style.display='none';
-  showToast('Uploading image...','blue');
-  try{
-    const reader = new FileReader();
-    const base64 = await new Promise((res,rej)=>{ reader.onload=()=>res(reader.result); reader.onerror=rej; reader.readAsDataURL(file); });
-    fill.style.width='50%';
-    const fd = new FormData();
-    fd.append('key', IMGBB_KEY);
-    fd.append('image', base64.split(',')[1]);
-    fd.append('name', 'admin_cert_'+type+'_'+Date.now());
-    const resp = await fetch('https://api.imgbb.com/1/upload',{method:'POST',body:fd});
-    const res = await resp.json();
-    if(!res.success) throw new Error(res.error?.message||'Upload failed');
-    fill.style.width='100%';
-    const url = res.data.url;
-    if(type==='cert') adminCertImgUrl=url;
-    else adminMsImgUrl=url;
-    // Show preview
-    const prevWrap = document.getElementById(type+'-img-preview-wrap');
-    prevWrap.innerHTML=`<img src="${url}" style="max-width:100%;border-radius:8px;max-height:180px;object-fit:contain" alt="preview"/><div style="font-size:11px;color:var(--green);margin-top:6px;font-weight:600"><i class="fas fa-check"></i> Uploaded successfully</div>`;
-    wrap.style.borderColor='var(--green)'; wrap.style.background='#f0fdf4';
-    showToast(type==='cert'?'Certificate image uploaded ✅':'Mark Sheet image uploaded ✅','green');
-  }catch(e){ wrap.style.borderColor='var(--red)'; showToast('Upload failed: '+e.message,'red'); console.error(e); }
-}
-
-window.adminUploadImg=(type,inp)=>{ const f=inp.files[0]; if(!f)return; adminImgBBUpload(f,type); inp.value=''; };
-
-/* ── ISSUE CERT ── */
-window.issueCert = async uid => {
-  const course=document.getElementById('cf-course').value.trim();
-  const grade=document.getElementById('cf-grade').value;
-  const date=document.getElementById('cf-date').value;
-  const roll=document.getElementById('cf-roll').value.trim();
-  const from=document.getElementById('cf-from').value;
-  const to=document.getElementById('cf-to').value;
-  const marks=document.getElementById('cf-marks').value.trim();
-  if(!course||!grade||!date) return showToast('⚠️ Fill required fields (course, grade, date)','red');
-  const certId='cert_'+Date.now();
-  const certData={course,grade,issueDate:date,roll,from,to,marks,issuedAt:Date.now()};
-  if(adminCertImgUrl) certData.certImageURL=adminCertImgUrl;
-  if(adminMsImgUrl)   certData.msImageURL=adminMsImgUrl;
-  try{
-    await set(ref(rtdb,`students/${uid}/certificates/${certId}`),certData);
-    if(!allStudents[uid].certificates) allStudents[uid].certificates={};
-    allStudents[uid].certificates[certId]=certData;
-    // Reset img URLs
-    adminCertImgUrl=''; adminMsImgUrl='';
-    buildStats(); buildRecentTable(); buildStudentsTable(); buildCertsTable();
-    showToast('Certificate issued! 🎉','green');
-    closeModal('student-modal');
-  }catch(e){ showToast('Error issuing certificate','red'); console.error(e); }
-};
-
-/* ── DELETE ── */
-window.deleteCert = async (uid, cid) => {
-  if(!confirm('Delete this certificate?')) return;
-  try{
-    await remove(ref(rtdb,`students/${uid}/certificates/${cid}`));
-    if(allStudents[uid]?.certificates) delete allStudents[uid].certificates[cid];
-    buildStats(); buildCertsTable(); buildRecentTable();
-    showToast('Certificate deleted','red');
-    if(document.getElementById('student-modal').classList.contains('show')) openStudentModal(uid);
-  }catch(e){ showToast('Error','red'); }
-};
-
-window.deleteStudent = async (uid, name) => {
-  if(!confirm(`Delete student "${name}"? This cannot be undone.`)) return;
-  try{
-    await remove(ref(rtdb,`students/${uid}`));
-    delete allStudents[uid];
-    buildStats(); buildStudentsTable(); buildRecentTable(); buildCertsTable();
-    showToast(`"${name}" deleted`,'red');
-  }catch(e){ showToast('Error deleting student','red'); }
-};
-
-/* ── PREVIEW DOC ── */
-window.previewDoc = (url, title) => {
-  document.getElementById('img-title').textContent = title;
-  document.getElementById('preview-img').src = url;
-  document.getElementById('preview-dl-link').href = url;
-  document.getElementById('img-modal').classList.add('show');
-};
-
-/* ── FILTERS ── */
-window.filterStudents = () => buildStudentsTable(document.getElementById('search-inp').value);
-window.filterCerts    = () => buildCertsTable(document.getElementById('cert-search').value);
-window.refreshAll     = async () => { showToast('Refreshing...','blue'); await loadAll(); showToast('Refreshed! ✅','green'); };
-
-/* ── PAGE NAV ── */
-window.showPage = page => {
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.sb-item').forEach(i=>i.classList.remove('active'));
-  const el = document.getElementById('page-'+page);
-  if(el) el.classList.add('active');
-  // active sidebar match
-  const map = {dashboard:'dashboard',students:'students','cert-ms':'cert-ms',idcards:'idcards'};
-  document.querySelectorAll('.sb-item').forEach(item=>{
-    const txt = item.textContent.toLowerCase().replace(/\s+/g,'');
-    if(page==='cert-ms' && txt.includes('certificate')) item.classList.add('active');
-    else if(page==='idcards' && txt.includes('id')) item.classList.add('active');
-    else if(page==='students' && txt.includes('student')) item.classList.add('active');
-    else if(page==='dashboard' && txt.includes('dashboard')) item.classList.add('active');
+/* ── CERT & MARKSHEET TABLE ── */
+function buildCertMsTable(filter) {
+  const rows = [];
+  Object.entries(allStudents).forEach(([uid,s]) => {
+    if (!s.certificates) return;
+    Object.entries(s.certificates).forEach(([cid,c]) => {
+      if (!filter || `${s.name||''} ${c.course||''}`.toLowerCase().includes(filter.toLowerCase())) {
+        rows.push({ uid, cid, s, c });
+      }
+    });
   });
-  // Build page data
-  if(page==='cert-ms') buildCertMsTable();
-  if(page==='idcards') buildIDCardsGrid();
-  closeSidebar();
-};
 
-/* ══ CERT & MARKSHEET PAGE ══ */
-function buildCertMsTable(filter=''){
-  const tbody = document.getElementById('cert-ms-tbody');
-  const mobileDiv = document.getElementById('cert-ms-mobile');
-  let rows=[];
-  Object.entries(allStudents).forEach(([uid,s])=>{
-    if(s.certificates){
-      Object.entries(s.certificates).forEach(([cid,c])=>{
-        if(!filter || `${s.name||''} ${c.course||''}`.toLowerCase().includes(filter.toLowerCase()))
-          rows.push({uid,cid,s,c});
-      });
-    }
-  });
-  if(!rows.length){
-    tbody.innerHTML=`<tr><td colspan="8"><div class="empty-msg"><i class="fas fa-scroll"></i><p>Koi certificate nahi mila</p></div></td></tr>`;
-    mobileDiv.innerHTML=''; return;
-  }
-  tbody.innerHTML = rows.map(({uid,cid,s,c})=>`
-    <tr>
-      <td><strong>${s.name||'—'}</strong><br><span style="font-size:11px;color:var(--sub)">${s.phone||''}</span></td>
-      <td>${c.course||'—'}</td>
-      <td>${c.issueDate||'—'}</td>
-      <td><span class="badge-sm badge-issued">${c.grade||'—'}</span></td>
-      <td style="font-size:12px">${c.roll||'—'}</td>
-      <td>${c.certImageURL?`<button class="tbl-btn" onclick="viewCertImg('${c.certImageURL}','Certificate – ${s.name||''}')"><i class="fas fa-eye"></i> View</button>`:`<span style="font-size:11px;color:#bbb">—</span>`}</td>
-      <td>${c.msImageURL?`<button class="tbl-btn" onclick="viewCertImg('${c.msImageURL}','Marksheet – ${s.name||''}')"><i class="fas fa-eye"></i> View</button>`:`<span style="font-size:11px;color:#bbb">—</span>`}</td>
-      <td>
-        <div class="tbl-actions">
-          <button class="tbl-btn" onclick="openEditCert('${uid}','${cid}')"><i class="fas fa-pen"></i> Edit</button>
-          <button class="tbl-btn danger" onclick="deleteCert('${uid}','${cid}')"><i class="fas fa-trash"></i></button>
-        </div>
-      </td>
-    </tr>`).join('');
-  mobileDiv.innerHTML = rows.map(({uid,cid,s,c})=>`
-    <div class="student-card-mobile">
+  const desktopHtml = rows.length
+    ? rows.map(({uid,cid,s,c}) =>
+        `<tr>
+          <td><strong>${s.name||'—'}</strong><br><span style="font-size:11px;color:var(--sub)">${s.phone||''}</span></td>
+          <td>${c.course||'—'}</td>
+          <td>${c.issueDate||'—'}</td>
+          <td><span class="badge-sm badge-issued">${c.grade||'—'}</span></td>
+          <td style="font-size:12px">${c.roll||'—'}</td>
+          <td>${c.certImageURL
+            ? `<button class="tbl-btn" onclick="previewImg('${c.certImageURL}','Certificate')"><i class="fas fa-eye"></i> View</button>`
+            : '<span style="font-size:11px;color:#bbb">—</span>'}</td>
+          <td>${c.msImageURL
+            ? `<button class="tbl-btn" onclick="previewImg('${c.msImageURL}','Marksheet')"><i class="fas fa-eye"></i> View</button>`
+            : '<span style="font-size:11px;color:#bbb">—</span>'}</td>
+          <td>
+            <div class="tbl-actions">
+              <button class="tbl-btn" onclick="openEditCert('${uid}','${cid}')"><i class="fas fa-pen"></i> Edit</button>
+              <button class="tbl-btn danger" onclick="deleteCert('${uid}','${cid}')"><i class="fas fa-trash"></i></button>
+            </div>
+          </td>
+        </tr>`).join('')
+    : `<tr><td colspan="8"><div class="empty-msg"><i class="fas fa-scroll"></i><p>Koi certificate nahi mila</p></div></td></tr>`;
+  setHtml('certms-tbody', desktopHtml);
+
+  const mobileHtml = rows.map(({uid,cid,s,c}) =>
+    `<div class="student-card-mobile">
       <div class="scm-top">
         <div class="ici-icon" style="width:44px;height:44px;background:var(--blue-lt);border-radius:12px;display:flex;align-items:center;justify-content:center"><i class="fas fa-scroll" style="color:var(--blue)"></i></div>
-        <div><div class="scm-name">${s.name||'—'}</div><div class="scm-course">${c.course||'—'} | Grade: ${c.grade||'—'}</div></div>
+        <div><div class="scm-name">${s.name||'—'}</div><div class="scm-course">${c.course||'—'} | ${c.grade||'—'}</div></div>
         <span class="badge-sm badge-issued" style="margin-left:auto">${c.grade||'—'}</span>
       </div>
       <div class="scm-info">
-        <div class="scm-info-item"><div class="k">Issue Date</div><div class="v">${c.issueDate||'—'}</div></div>
-        <div class="scm-info-item"><div class="k">Roll No</div><div class="v">${c.roll||'—'}</div></div>
-        <div class="scm-info-item"><div class="k">Certificate</div><div class="v">${c.certImageURL?'✅ Uploaded':'—'}</div></div>
-        <div class="scm-info-item"><div class="k">Marksheet</div><div class="v">${c.msImageURL?'✅ Uploaded':'—'}</div></div>
+        <div class="scm-info-item"><div class="k">Date</div><div class="v">${c.issueDate||'—'}</div></div>
+        <div class="scm-info-item"><div class="k">Roll</div><div class="v">${c.roll||'—'}</div></div>
+        <div class="scm-info-item"><div class="k">Cert Image</div><div class="v">${c.certImageURL?'✅':'—'}</div></div>
+        <div class="scm-info-item"><div class="k">MS Image</div><div class="v">${c.msImageURL?'✅':'—'}</div></div>
       </div>
       <div class="scm-actions">
-        ${c.certImageURL?`<button class="scm-btn view" onclick="viewCertImg('${c.certImageURL}','Certificate')"><i class="fas fa-eye"></i> Certificate</button>`:''}
-        ${c.msImageURL?`<button class="scm-btn view" onclick="viewCertImg('${c.msImageURL}','Marksheet')"><i class="fas fa-eye"></i> Marksheet</button>`:''}
+        ${c.certImageURL ? `<button class="scm-btn view" onclick="previewImg('${c.certImageURL}','Certificate')"><i class="fas fa-eye"></i> Cert</button>` : ''}
+        ${c.msImageURL   ? `<button class="scm-btn view" onclick="previewImg('${c.msImageURL}','Marksheet')"><i class="fas fa-eye"></i> MS</button>` : ''}
         <button class="scm-btn view" onclick="openEditCert('${uid}','${cid}')"><i class="fas fa-pen"></i> Edit</button>
         <button class="scm-btn del" onclick="deleteCert('${uid}','${cid}')"><i class="fas fa-trash"></i></button>
       </div>
     </div>`).join('');
+  setHtml('certms-mobile', mobileHtml);
 }
-window.filterCertMs = () => buildCertMsTable(document.getElementById('cert-ms-search').value);
 
-window.viewCertImg = (url, title) => {
-  document.getElementById('cert-img-title').textContent = title;
-  document.getElementById('cert-img-preview').src = url;
-  document.getElementById('cert-img-dl').href = url;
-  document.getElementById('cert-img-modal').classList.add('show');
-};
-
-/* ══ ID CARDS PAGE ══ */
-function buildIDCardsGrid(filter='') {
-  const grid = document.getElementById('idcards-grid');
+/* ── ID CARDS GRID ── */
+function buildIDCardsGrid(filter) {
   let studs = Object.entries(allStudents);
-  if(filter) studs = studs.filter(([,s])=>`${s.name||''} ${s.course||''}`.toLowerCase().includes(filter.toLowerCase()));
-  if(!studs.length){
-    grid.innerHTML=`<div class="empty-msg" style="grid-column:1/-1"><i class="fas fa-id-card"></i><p>Koi student nahi mila</p></div>`;
+  if (filter) {
+    const f = filter.toLowerCase();
+    studs = studs.filter(([,s]) => `${s.name||''} ${s.course||''}`.toLowerCase().includes(f));
+  }
+  if (!studs.length) {
+    setHtml('idcards-grid', '<div class="empty-msg" style="grid-column:1/-1"><i class="fas fa-id-card"></i><p>Koi student nahi mila</p></div>');
     return;
   }
-  grid.innerHTML = studs.map(([uid,s])=>{
+  const html = studs.map(([uid,s]) => {
     const ini = (s.name||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
-    return `<div style="background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:.2s" onmouseenter="this.style.transform='translateY(-2px)'" onmouseleave="this.style.transform='none'">
-      <!-- ID Card Header -->
-      <div style="background:linear-gradient(135deg,#1a2a6c,#4361ee);padding:14px 16px 10px;color:#fff;display:flex;align-items:center;gap:10px;position:relative">
-        <img src="https://i.ibb.co/RkxnyPxK/20260322154244.webp" style="width:38px;height:38px;object-fit:contain;border-radius:8px;background:rgba(255,255,255,.9);padding:2px" alt="DAN" onerror="this.style.display='none'"/>
-        <div><div style="font-size:13px;font-weight:700">DAN Educational Institute</div><div style="font-size:9px;opacity:.75">Student Identity Card</div></div>
+    const photoHtml = s.photoURL
+      ? `<img src="${s.photoURL}" style="width:100%;height:100%;object-fit:cover" alt="photo" onerror="this.style.display='none'"/><span style="display:none">${ini}</span>`
+      : ini;
+    return `<div class="id-card-item">
+      <div style="background:linear-gradient(135deg,#1a2a6c,#4361ee);padding:14px 16px 10px;color:#fff;display:flex;align-items:center;gap:10px">
+        <img src="https://i.ibb.co/RkxnyPxK/20260322154244.webp" style="width:36px;height:36px;object-fit:contain;border-radius:8px;background:rgba(255,255,255,.9);padding:2px" alt="DAN" onerror="this.style.display='none'"/>
+        <div><div style="font-size:12px;font-weight:700">DAN Educational Institute</div><div style="font-size:9px;opacity:.75">Student Identity Card</div></div>
       </div>
-      <!-- ID Card Body -->
       <div style="padding:14px 16px;display:flex;gap:12px">
-        <div style="width:64px;height:72px;border-radius:8px;border:2px solid var(--blue-mid);background:var(--blue-lt);flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:20px;font-weight:700;color:var(--blue)">
-          ${s.photoURL?`<img src="${s.photoURL}" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.innerHTML='${ini}'" alt="photo"/>`:ini}
-        </div>
+        <div style="width:60px;height:68px;border-radius:8px;border:2px solid var(--blue-mid);background:var(--blue-lt);flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:18px;font-weight:700;color:var(--blue)">${photoHtml}</div>
         <div style="flex:1;min-width:0">
-          <div style="font-weight:700;font-size:14px;color:#1a2a6c;margin-bottom:6px;padding-bottom:5px;border-bottom:1px solid var(--border)">${s.name||'—'}</div>
-          <div style="font-size:11px;color:var(--sub);margin-bottom:3px"><strong style="color:var(--text)">Father:</strong> ${s.father||'—'}</div>
-          <div style="font-size:11px;color:var(--sub);margin-bottom:3px"><strong style="color:var(--text)">Course:</strong> ${s.course||'—'}</div>
-          <div style="font-size:11px;color:var(--sub);margin-bottom:3px"><strong style="color:var(--text)">Phone:</strong> ${s.phone||'—'}</div>
-          <div style="font-size:10px;color:var(--sub)"><strong style="color:var(--text)">Center:</strong> ${(s.center||'—').slice(0,40)}</div>
+          <div style="font-weight:700;font-size:13px;color:#1a2a6c;margin-bottom:5px;padding-bottom:4px;border-bottom:1px solid var(--border)">${s.name||'—'}</div>
+          <div style="font-size:11px;color:var(--sub);margin-bottom:2px"><strong style="color:var(--text)">Father:</strong> ${s.father||'—'}</div>
+          <div style="font-size:11px;color:var(--sub);margin-bottom:2px"><strong style="color:var(--text)">Course:</strong> ${s.course||'—'}</div>
+          <div style="font-size:11px;color:var(--sub);margin-bottom:2px"><strong style="color:var(--text)">Phone:</strong> ${s.phone||'—'}</div>
+          <div style="font-size:10px;color:var(--sub)"><strong style="color:var(--text)">Center:</strong> ${(s.center||'—').slice(0,38)}</div>
         </div>
       </div>
-      <!-- Footer -->
       <div style="background:linear-gradient(135deg,#1a2a6c,#4361ee);padding:8px 16px;display:flex;justify-content:space-between;align-items:center">
         <span style="font-size:10px;color:rgba(255,255,255,.8)">2024–25</span>
         <button onclick="openStudentModal('${uid}')" style="padding:5px 12px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);border-radius:8px;color:#fff;font-size:11px;font-weight:600;cursor:pointer;font-family:var(--font)"><i class="fas fa-eye"></i> Details</button>
       </div>
     </div>`;
   }).join('');
+  setHtml('idcards-grid', html);
 }
-window.filterIDCards = () => {
-  const f = document.getElementById('idcard-search').value;
-  buildIDCardsGrid(f);
+
+/* ── STUDENT MODAL ── */
+window.openStudentModal = uid => {
+  const s = allStudents[uid];
+  if (!s) return;
+  setTxt('modal-title', s.name || 'Student Details');
+  const ini = (s.name||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  const certs = s.certificates ? Object.entries(s.certificates) : [];
+
+  const docRow = (label, icon, url) => {
+    if (!url) return `<div class="doc-row"><div class="doc-row-left"><i class="fas ${icon}"></i>${label}</div><span class="badge-sm badge-pending">Not Uploaded</span></div>`;
+    return `<div class="doc-row">
+      <div class="doc-row-left"><i class="fas ${icon}"></i>${label}<span class="badge-sm badge-done" style="margin-left:6px"><i class="fas fa-check"></i> Uploaded</span></div>
+      <div class="doc-actions">
+        <button class="doc-btn view" onclick="previewImg('${url}','${label}')"><i class="fas fa-eye"></i> View</button>
+        <a class="doc-btn view" href="${url}" download target="_blank"><i class="fas fa-download"></i> Download</a>
+      </div>
+    </div>`;
+  };
+
+  setHtml('modal-body', `
+    <div class="sd-header">
+      <div class="sd-avatar">${s.photoURL ? `<img src="${s.photoURL}" alt="photo" onerror="this.style.display='none'"/>` : ini}</div>
+      <div>
+        <div class="sd-name">${s.name||'—'}</div>
+        <div class="sd-email">${s.email||'—'}</div>
+        ${s.course ? `<span class="badge-sm badge-issued" style="margin-top:6px"><i class="fas fa-book-open"></i> ${s.course}</span>` : ''}
+      </div>
+    </div>
+    <div class="detail-grid">
+      <div class="detail-item"><div class="dk"><i class="fas fa-person"></i> Father</div><div class="dv">${s.father||'—'}</div></div>
+      <div class="detail-item"><div class="dk"><i class="fas fa-person-dress"></i> Mother</div><div class="dv">${s.mother||'—'}</div></div>
+      <div class="detail-item"><div class="dk"><i class="fas fa-phone"></i> Phone</div><div class="dv">${s.phone||'—'}</div></div>
+      <div class="detail-item"><div class="dk"><i class="fas fa-envelope"></i> Email</div><div class="dv" style="font-size:11px">${s.email||'—'}</div></div>
+      <div class="detail-item" style="grid-column:1/-1"><div class="dk"><i class="fas fa-location-dot"></i> Center</div><div class="dv">${s.center||'—'}</div></div>
+    </div>
+    <h5 style="font-size:13px;font-weight:700;margin-bottom:11px"><i class="fas fa-folder-open" style="color:var(--blue);margin-right:6px"></i>Documents</h5>
+    ${docRow('Aadhaar Card','fa-id-card',s.aadhaarURL)}
+    ${docRow('Admit Card','fa-file-lines',s.admitURL)}
+    ${docRow('Student Photo','fa-camera',s.photoURL)}
+    <h5 style="font-size:13px;font-weight:700;margin:16px 0 11px"><i class="fas fa-award" style="color:var(--blue);margin-right:6px"></i>Certificates (${certs.length})</h5>
+    ${certs.length
+      ? certs.map(([cid,c]) => `
+          <div class="issued-cert-item">
+            <div class="ici-left">
+              <div class="ici-icon"><i class="fas fa-scroll"></i></div>
+              <div><div class="ici-title">${c.course||'Certificate'}</div><div class="ici-sub">Date: ${c.issueDate||'—'} | Grade: ${c.grade||'—'} | Roll: ${c.roll||'—'}</div></div>
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              ${c.certImageURL ? `<button class="doc-btn view" onclick="previewImg('${c.certImageURL}','Certificate')"><i class="fas fa-scroll"></i></button>` : ''}
+              ${c.msImageURL   ? `<button class="doc-btn view" onclick="previewImg('${c.msImageURL}','Marksheet')"><i class="fas fa-table-list"></i></button>` : ''}
+              <button class="delete-btn" onclick="deleteCert('${uid}','${cid}')"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>`).join('')
+      : '<p style="color:var(--sub);font-size:13px;margin-bottom:14px">No certificates issued yet.</p>'}
+    <button class="issue-btn" style="margin-top:6px" onclick="closeModal('student-modal');openIssueCertModal('${uid}')">
+      <i class="fas fa-plus-circle"></i> Issue New Certificate
+    </button>
+  `);
+  show('student-modal');
 };
 
-/* ══ ADD / EDIT CERT MODAL ══ */
-let acmCertUrl='', acmMsUrl='', acmEditUid='', acmEditCid='';
-
-window.openAddCertModal = (uid='', cid='') => {
-  acmEditUid=uid; acmEditCid=cid;
-  acmCertUrl=''; acmMsUrl='';
-  // Reset form
-  ['acm-course','acm-roll','acm-marks'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
-  document.getElementById('acm-grade').value='A+';
-  document.getElementById('acm-date').value=new Date().toISOString().split('T')[0];
-  ['acm-from','acm-to'].forEach(id=>{ document.getElementById(id).value=''; });
-  // Reset upload boxes
-  ['cert','ms'].forEach(t=>{
-    document.getElementById('acm-'+t+'-prev').innerHTML=t==='cert'
-      ?`<i class="fas fa-scroll" style="font-size:24px;color:var(--blue-mid);display:block;margin-bottom:6px"></i><div style="font-size:13px;font-weight:600;color:var(--sub)">Certificate image upload karo</div>`
-      :`<i class="fas fa-table-list" style="font-size:24px;color:var(--blue-mid);display:block;margin-bottom:6px"></i><div style="font-size:13px;font-weight:600;color:var(--sub)">Mark Sheet image upload karo</div>`;
-    document.getElementById('acm-'+t+'-box').style.borderColor='var(--border)';
-    document.getElementById('acm-'+t+'-box').style.background='#fafbff';
-  });
-  // Fill student dropdown
-  const sel = document.getElementById('acm-student');
-  sel.innerHTML='<option value="">-- Student chuniye --</option>';
-  Object.entries(allStudents).forEach(([id,s])=>{
-    const opt=document.createElement('option'); opt.value=id; opt.textContent=`${s.name||'?'} (${s.course||'No course'})`;
+/* ── ISSUE / EDIT CERT MODAL ── */
+window.openIssueCertModal = (preUid) => {
+  cmEditUid = ''; cmEditCid = ''; cmCertUrl = ''; cmMsUrl = '';
+  setTxt('cert-modal-title', 'Certificate Issue Karo');
+  setTxt('cm-btn-text', 'Issue Certificate');
+  // Reset fields
+  ['cm-course','cm-roll','cm-marks'].forEach(id => { const e=el(id); if(e) e.value=''; });
+  el('cm-grade').value = 'A+';
+  el('cm-date').value  = new Date().toISOString().split('T')[0];
+  ['cm-from','cm-to'].forEach(id => { const e=el(id); if(e) e.value=''; });
+  resetCmUpload('cert');
+  resetCmUpload('ms');
+  // Populate student dropdown
+  const sel = el('cm-student');
+  sel.innerHTML = '<option value="">-- Student chuniye --</option>';
+  sel.disabled = false;
+  Object.entries(allStudents).forEach(([uid,s]) => {
+    const opt = document.createElement('option');
+    opt.value = uid;
+    opt.textContent = `${s.name||'?'} (${s.course||'—'})`;
     sel.appendChild(opt);
   });
-  // If edit mode, prefill
-  if(uid && cid){
-    document.getElementById('add-cert-title').textContent='Certificate Edit Karo';
-    document.getElementById('acm-btn-text').textContent='Update Certificate';
-    sel.value=uid; sel.disabled=true;
-    const c=allStudents[uid]?.certificates?.[cid];
-    if(c){
-      document.getElementById('acm-course').value=c.course||'';
-      document.getElementById('acm-grade').value=c.grade||'A+';
-      document.getElementById('acm-date').value=c.issueDate||'';
-      document.getElementById('acm-roll').value=c.roll||'';
-      document.getElementById('acm-from').value=c.from||'';
-      document.getElementById('acm-to').value=c.to||'';
-      document.getElementById('acm-marks').value=c.marks||'';
-      if(c.certImageURL){ acmCertUrl=c.certImageURL; showAcmPreview('cert',c.certImageURL); }
-      if(c.msImageURL)  { acmMsUrl=c.msImageURL;   showAcmPreview('ms',c.msImageURL); }
-    }
-  } else {
-    document.getElementById('add-cert-title').textContent='Certificate Issue Karo';
-    document.getElementById('acm-btn-text').textContent='Issue Certificate';
-    sel.disabled=false;
-  }
-  document.getElementById('add-cert-modal').classList.add('show');
+  if (preUid) sel.value = preUid;
+  show('cert-modal');
 };
 
-window.openEditCert = (uid,cid) => openAddCertModal(uid,cid);
+window.openEditCert = (uid, cid) => {
+  const s = allStudents[uid];
+  const c = s && s.certificates && s.certificates[cid];
+  if (!c) return;
+  cmEditUid = uid; cmEditCid = cid; cmCertUrl = c.certImageURL||''; cmMsUrl = c.msImageURL||'';
+  setTxt('cert-modal-title', 'Certificate Edit Karo');
+  setTxt('cm-btn-text', 'Update Certificate');
+  const e = (id,v) => { const el2=el(id); if(el2) el2.value=v||''; };
+  e('cm-course', c.course); e('cm-date', c.issueDate); e('cm-roll', c.roll);
+  e('cm-from', c.from); e('cm-to', c.to); e('cm-marks', c.marks);
+  el('cm-grade').value = c.grade || 'A+';
+  // Student dropdown - locked
+  const sel = el('cm-student');
+  sel.innerHTML = `<option value="${uid}">${s.name||'?'} (${s.course||'—'})</option>`;
+  sel.disabled = true;
+  // Show existing images
+  if (c.certImageURL) showCmPreview('cert', c.certImageURL);
+  else resetCmUpload('cert');
+  if (c.msImageURL) showCmPreview('ms', c.msImageURL);
+  else resetCmUpload('ms');
+  show('cert-modal');
+};
 
-function showAcmPreview(t, url){
-  document.getElementById('acm-'+t+'-prev').innerHTML=`<img src="${url}" style="max-width:100%;max-height:140px;border-radius:8px;object-fit:contain" alt="prev"/><div style="font-size:11px;color:var(--green);margin-top:5px;font-weight:600"><i class="fas fa-check"></i> Uploaded</div>`;
-  document.getElementById('acm-'+t+'-box').style.borderColor='var(--green)';
-  document.getElementById('acm-'+t+'-box').style.background='#f0fdf4';
+function resetCmUpload(type) {
+  const icons = { cert: 'fa-scroll', ms: 'fa-table-list' };
+  const labels = { cert: 'Certificate image upload karo', ms: 'Mark Sheet image upload karo (optional)' };
+  setHtml('cm-'+type+'-prev',
+    `<i class="fas ${icons[type]}" style="font-size:22px;color:var(--blue-mid);display:block;margin-bottom:6px"></i>
+     <div style="font-size:13px;font-weight:600;color:var(--sub)">${labels[type]}</div>`);
+  const box = el('cm-'+type+'-box');
+  if (box) { box.style.borderColor=''; box.style.background=''; box.className='upload-box-sm'; }
+  const prog = el('cm-'+type+'-prog');
+  if (prog) prog.classList.remove('show');
 }
 
-window.acmUpload = async (type, inp) => {
-  const file=inp.files[0]; if(!file) return;
-  const prog=document.getElementById('acm-'+type+'-prog');
-  const fill=document.getElementById('acm-'+type+'-fill');
-  prog.style.display='block'; fill.style.width='15%';
-  showToast('Image upload ho rahi hai...','blue');
-  try{
-    const reader=new FileReader();
-    const b64=await new Promise((r,j)=>{reader.onload=()=>r(reader.result);reader.onerror=j;reader.readAsDataURL(file);});
-    fill.style.width='50%';
-    const fd=new FormData();
-    fd.append('key',IMGBB_KEY);
-    fd.append('image',b64.split(',')[1]);
-    fd.append('name','admin_'+type+'_'+Date.now());
-    const resp=await fetch('https://api.imgbb.com/1/upload',{method:'POST',body:fd});
-    const res=await resp.json();
-    if(!res.success) throw new Error(res.error?.message||'Upload failed');
-    fill.style.width='100%';
-    const url=res.data.url;
-    if(type==='cert') acmCertUrl=url;
-    else acmMsUrl=url;
-    showAcmPreview(type,url);
-    showToast(type==='cert'?'Certificate image uploaded ✅':'Marksheet uploaded ✅','green');
-  }catch(e){ showToast('Upload failed: '+e.message,'red'); console.error(e); }
-  inp.value='';
+function showCmPreview(type, url) {
+  setHtml('cm-'+type+'-prev',
+    `<img src="${url}" style="max-width:100%;max-height:130px;border-radius:8px;object-fit:contain" alt="prev"/>
+     <div style="font-size:11px;color:var(--green);margin-top:5px;font-weight:600"><i class="fas fa-check"></i> Uploaded</div>`);
+  const box = el('cm-'+type+'-box');
+  if (box) { box.style.borderColor = 'var(--green)'; box.style.background = '#f0fdf4'; }
+}
+
+window.cmUpload = async (type, inp) => {
+  const file = inp.files[0];
+  if (!file) return;
+  const prog = el('cm-'+type+'-prog');
+  const fill = el('cm-'+type+'-fill');
+  if (prog) prog.classList.add('show');
+  if (fill) fill.style.width = '15%';
+  showToast('Uploading...', 'blue');
+  try {
+    const b64 = await new Promise((res,rej) => {
+      const r = new FileReader();
+      r.onload = () => res(r.result);
+      r.onerror = rej;
+      r.readAsDataURL(file);
+    });
+    if (fill) fill.style.width = '50%';
+    const fd = new FormData();
+    fd.append('key', IMGBB_KEY);
+    fd.append('image', b64.split(',')[1]);
+    fd.append('name', 'admin_'+type+'_'+Date.now());
+    const resp = await fetch('https://api.imgbb.com/1/upload', { method:'POST', body:fd });
+    const res  = await resp.json();
+    if (!res.success) throw new Error(res.error?.message || 'Upload failed');
+    if (fill) fill.style.width = '100%';
+    const url = res.data.url;
+    if (type === 'cert') cmCertUrl = url;
+    else cmMsUrl = url;
+    showCmPreview(type, url);
+    showToast(type === 'cert' ? 'Certificate image uploaded ✅' : 'Marksheet uploaded ✅', 'green');
+  } catch(err) {
+    showToast('Upload failed: ' + err.message, 'red');
+    console.error(err);
+  }
+  inp.value = '';
 };
 
 window.submitCertModal = async () => {
-  const uid = acmEditUid || document.getElementById('acm-student').value;
-  const course=document.getElementById('acm-course').value.trim();
-  const grade=document.getElementById('acm-grade').value;
-  const date=document.getElementById('acm-date').value;
-  if(!uid) return showToast('⚠️ Student chuniye','red');
-  if(!course||!date) return showToast('⚠️ Course aur date zaroori hai','red');
-  const certData={
-    course, grade, issueDate:date,
-    roll:document.getElementById('acm-roll').value.trim(),
-    from:document.getElementById('acm-from').value,
-    to:document.getElementById('acm-to').value,
-    marks:document.getElementById('acm-marks').value.trim(),
-    issuedAt:Date.now()
+  const uid    = el('cm-student').value;
+  const course = (el('cm-course').value || '').trim();
+  const grade  = el('cm-grade').value;
+  const date   = el('cm-date').value;
+  if (!uid)    return showToast('⚠️ Student select karo', 'red');
+  if (!course) return showToast('⚠️ Course name likho', 'red');
+  if (!date)   return showToast('⚠️ Date select karo', 'red');
+  const certData = {
+    course, grade, issueDate: date,
+    roll:  (el('cm-roll').value  || '').trim(),
+    from:   el('cm-from').value  || '',
+    to:     el('cm-to').value    || '',
+    marks: (el('cm-marks').value || '').trim(),
+    issuedAt: Date.now()
   };
-  if(acmCertUrl) certData.certImageURL=acmCertUrl;
-  if(acmMsUrl)   certData.msImageURL=acmMsUrl;
-  const certId = acmEditCid || ('cert_'+Date.now());
-  document.getElementById('acm-btn-text').textContent='Saving...';
-  try{
-    await set(ref(rtdb,`students/${uid}/certificates/${certId}`),certData);
-    if(!allStudents[uid].certificates) allStudents[uid].certificates={};
-    allStudents[uid].certificates[certId]=certData;
-    buildStats(); buildRecentTable(); buildStudentsTable(); buildCertMsTable();
-    showToast(acmEditCid?'Certificate update ho gaya! ✅':'Certificate issue ho gaya! 🎉','green');
-    closeModal('add-cert-modal');
-    acmEditUid=''; acmEditCid=''; acmCertUrl=''; acmMsUrl='';
-  }catch(e){ showToast('Error: '+e.message,'red'); console.error(e); }
-  finally{ document.getElementById('acm-btn-text').textContent=acmEditCid?'Update Certificate':'Issue Certificate'; }
+  if (cmCertUrl) certData.certImageURL = cmCertUrl;
+  if (cmMsUrl)   certData.msImageURL   = cmMsUrl;
+  const certId = cmEditCid || ('cert_' + Date.now());
+  setTxt('cm-btn-text', 'Saving...');
+  try {
+    await set(ref(rtdb, `students/${uid}/certificates/${certId}`), certData);
+    if (!allStudents[uid].certificates) allStudents[uid].certificates = {};
+    allStudents[uid].certificates[certId] = certData;
+    buildStats(); buildRecentTable(); buildCertMsTable(); buildStudentsTable();
+    showToast(cmEditCid ? 'Certificate updated! ✅' : 'Certificate issued! 🎉', 'green');
+    closeModal('cert-modal');
+    cmEditUid = ''; cmEditCid = ''; cmCertUrl = ''; cmMsUrl = '';
+  } catch(err) {
+    showToast('Error: ' + err.message, 'red');
+    console.error(err);
+  } finally {
+    setTxt('cm-btn-text', cmEditCid ? 'Update Certificate' : 'Issue Certificate');
+  }
 };
 
-/* ── MODAL & SIDEBAR ── */
-window.closeModal = id => document.getElementById(id).classList.remove('show');
-document.querySelectorAll('.modal-overlay').forEach(m=>m.addEventListener('click',e=>{ if(e.target===m) m.classList.remove('show'); }));
-window.toggleSidebar = () => { document.getElementById('sidebar').classList.toggle('open'); document.getElementById('overlay').classList.toggle('show'); };
-window.closeSidebar  = () => { document.getElementById('sidebar').classList.remove('open'); document.getElementById('overlay').classList.remove('show'); };
+/* ── DELETE ── */
+window.deleteCert = async (uid, cid) => {
+  if (!confirm('Delete this certificate?')) return;
+  try {
+    await remove(ref(rtdb, `students/${uid}/certificates/${cid}`));
+    if (allStudents[uid]?.certificates) delete allStudents[uid].certificates[cid];
+    buildStats(); buildCertMsTable(); buildRecentTable();
+    showToast('Certificate deleted', 'red');
+    if (el('student-modal').classList.contains('show')) openStudentModal(uid);
+  } catch(err) { showToast('Error: ' + err.message, 'red'); }
+};
+
+window.deleteStudent = async uid => {
+  const name = allStudents[uid]?.name || 'this student';
+  if (!confirm(`Delete "${name}"? This cannot be undone.`)) return;
+  try {
+    await remove(ref(rtdb, `students/${uid}`));
+    delete allStudents[uid];
+    buildStats(); buildStudentsTable(); buildRecentTable(); buildCertMsTable(); buildIDCardsGrid();
+    showToast(`"${name}" deleted`, 'red');
+  } catch(err) { showToast('Error: ' + err.message, 'red'); }
+};
+
+/* ── IMAGE PREVIEW ── */
+window.previewImg = (url, title) => {
+  setTxt('img-modal-title', title);
+  setSrc('img-modal-img', url);
+  setHref('img-modal-dl', url);
+  show('img-modal');
+};
+
+/* ── FILTERS ── */
+window.filterStudents  = () => buildStudentsTable(el('search-inp')?.value);
+window.filterCertMs    = () => buildCertMsTable(el('certms-search')?.value);
+window.filterIDCards   = () => buildIDCardsGrid(el('idcard-search')?.value);
+
+/* ── PAGE NAV ── */
+window.showPage = page => {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sb-item').forEach(i => i.classList.remove('active'));
+  const pg = el('page-' + page);
+  if (pg) pg.classList.add('active');
+  // Activate matching sidebar item
+  const map = { dashboard:'Dashboard', students:'Students', certms:'Certificate', idcards:'ID Cards' };
+  document.querySelectorAll('.sb-item').forEach(item => {
+    if (map[page] && item.textContent.includes(map[page])) item.classList.add('active');
+  });
+  closeSidebar();
+};
+
+/* ── SIDEBAR & MODAL ── */
+window.closeModal = id => { const e=el(id); if(e) e.classList.remove('show'); };
+document.querySelectorAll('.modal-overlay').forEach(m => m.addEventListener('click', e => { if(e.target===m) m.classList.remove('show'); }));
+window.toggleSidebar = () => { el('sidebar').classList.toggle('open'); el('overlay').classList.toggle('show'); };
+window.closeSidebar  = () => { el('sidebar').classList.remove('open'); el('overlay').classList.remove('show'); };
 
 /* ── HELPERS ── */
-function showAuthErr(msg){ const el=document.getElementById('auth-error'); document.getElementById('auth-err-msg').textContent=msg; el.classList.add('show'); setTimeout(()=>el.classList.remove('show'),5000); }
-function setLoginLoad(on){ document.getElementById('login-btn').innerHTML=on?'<span class="spinner"></span> Please wait...':'<i class="fas fa-shield-halved"></i> Login as Admin'; }
-function fbErr(c){ return{'auth/user-not-found':'No admin account found.','auth/wrong-password':'Wrong password.','auth/invalid-credential':'Invalid email or password.','auth/network-request-failed':'Network error.'}[c]||'Login failed. Try again.'; }
+function showAuthErr(msg) {
+  setTxt('auth-err-msg', msg);
+  const e = el('auth-error');
+  if (e) { e.classList.add('show'); setTimeout(() => e.classList.remove('show'), 5000); }
+}
+function fbErr(c) {
+  const m = {
+    'auth/user-not-found':'No account found.',
+    'auth/wrong-password':'Incorrect password.',
+    'auth/invalid-credential':'Invalid email or password.',
+    'auth/network-request-failed':'Network error. Check connection.'
+  };
+  return m[c] || 'Login failed. Try again.';
+}
 
-let toastT;
-window.showToast=(msg,type='')=>{ const t=document.getElementById('toast'); t.innerHTML=`<i class="fas fa-circle-info"></i> ${msg}`; t.className='toast'+(type?' '+type:'')+' show'; clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),3400); };
+let toastTimer;
+window.showToast = (msg, type) => {
+  const t = el('toast');
+  if (!t) return;
+  t.innerHTML = `<i class="fas fa-circle-info"></i> ${msg}`;
+  t.className = 'toast' + (type ? ' ' + type : '') + ' show';
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3400);
+};
 </script>
 </body>
 </html>
